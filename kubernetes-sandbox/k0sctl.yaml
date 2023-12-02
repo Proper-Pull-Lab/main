@@ -1,0 +1,39 @@
+
+apiVersion: k0sctl.k0sproject.io/v1beta1
+kind: Cluster
+metadata:
+  name: test-cluster
+spec:
+  k0s:
+    version: 1.26.5+k0s.0
+    config:
+      apiVersion: k0sctl.k0sproject.io/v1beta1
+      kind: Cluster
+      metadata:
+        name: test-cluster
+  hosts:
+  - ssh:
+      address: 192.168.7.2
+      port: 22
+      user: root
+      keyPath: priv_key
+    role: controller
+    installFlags: &installFlagsController
+  - ssh:
+      address: 192.168.7.3
+      port: 22
+      user: root
+      keyPath: priv_key
+    role: worker
+  - ssh:
+      address: 192.168.7.4
+      port: 22
+      user: root
+      keyPath: priv_key
+    role: worker
+  - ssh:
+      address: 192.168.7.5
+      port: 22
+      user: root
+      keyPath: priv_key
+    role: worker
