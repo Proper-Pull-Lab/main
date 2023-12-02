@@ -5,7 +5,7 @@ metadata:
   name: test-cluster
 spec:
   k0s:
-    version: 1.26.5+k0s.0
+    version: 1.28.4+k0s.0
     config:
       apiVersion: k0sctl.k0sproject.io/v1beta1
       kind: Cluster

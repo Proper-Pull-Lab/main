@@ -9,9 +9,9 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: ../*
+    targetRevision: init
     repoURL: https://github.com/Proper-Pull-Lab/main/
-    targetRevision: main
+    path: test
   syncPolicy:
     automated:
       prune: true

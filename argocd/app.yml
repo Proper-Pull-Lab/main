@@ -10,8 +10,8 @@ spec:
   project: default 
   source: 
     path: apps/bgd/overlays/bgd
-    repoURL: https://github.com/Proper-Pull-Lab/main
-    targetRevision: main
+    repoURL: https://github.com/redhat-developer-demos/openshift-gitops-examples
+    targetRevision: minikube
   syncPolicy: 
     automated:
       prune: true
