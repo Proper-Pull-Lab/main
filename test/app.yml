@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mail
+  namespace: argocd
+spec:
+  destination:
+    namespace: mail
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: ../*
+    repoURL: https://github.com/Proper-Pull-Lab/main/
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
