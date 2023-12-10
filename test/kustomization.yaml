@@ -15,4 +15,4 @@ helmCharts:
   namespace: mail
 
 patches:
-- path: argo-cm.yaml
+- path: argocd-cm.yaml
