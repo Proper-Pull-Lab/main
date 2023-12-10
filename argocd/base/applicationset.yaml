@@ -11,7 +11,9 @@ spec:
   source:
     targetRevision: init
     repoURL: https://github.com/Proper-Pull-Lab/main/
-    path: argocd
+    directories:
+      - path: "**/*"
+      - path: ".*/**"
   syncPolicy:
     automated:
       prune: true
