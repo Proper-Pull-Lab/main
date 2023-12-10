@@ -1,23 +1,36 @@
 apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: ApplicationSet
 metadata:
-  name: argocd
+  name: apps
   namespace: argocd
 spec:
-  destination:
-    namespace: argocd
-    server: https://kubernetes.default.svc
-  project: default
-  source:
-    targetRevision: init
-    repoURL: https://github.com/Proper-Pull-Lab/main/
-    directories:
+  generators:
+  - git:
+      repoURL: https://github.com/Proper-Pull-Lab/main/
+      revision: init
+      directories:
       - path: "**/*"
       - path: ".*/**"
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: false
-    syncOptions:
-    - CreateNamespace=true
-    - FailOnSharedResource=true
+        exclude: true
+  template:
+    metadata:
+      name: '{{path[1]}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/Proper-Pull-Lab/main/
+        targetRevision: init
+        path: '{{path}}'
+        kustomize:
+          namespace: '{{path[0]}}'
+      destination:
+        name: in-cluster
+        namespace: '{{path[0]}}'
+
+      syncPolicy:	
+        automated:
+          selfHeal: true	
+          prune: true	
+        syncOptions:
+        - CreateNamespace=true
+        - FailOnSharedResource=true
